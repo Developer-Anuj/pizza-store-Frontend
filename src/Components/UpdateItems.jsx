@@ -8,7 +8,7 @@ function UpdateItems() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/items');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/items`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -20,7 +20,7 @@ function UpdateItems() {
   const handleUpdate = async (id) => {
     const updatedItem = data.find((item) => item._id === id);
     try {
-      const response = await axios.put(`http://localhost:5000/items/${id}`, updatedItem);
+      const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/items/${id}`, updatedItem);
       const updatedData = data.map((item) =>
         item._id === id ? response.data : item
       );

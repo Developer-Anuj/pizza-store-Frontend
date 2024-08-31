@@ -8,7 +8,7 @@ function DeleteItems() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/items');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/items`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -19,7 +19,7 @@ function DeleteItems() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/items/${id}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_URL}/items/${id}`);
       const updatedData = data.filter((item) => item._id !== id);
       setData(updatedData);
       alert('Item deleted successfully!');
@@ -28,6 +28,7 @@ function DeleteItems() {
       alert('Failed to delete item');
     }
   };
+
 
   const display = data.map((e) => (
     <tr key={e._id}>

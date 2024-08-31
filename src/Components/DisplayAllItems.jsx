@@ -8,7 +8,7 @@ function DisplayAllItems() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/items');
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/items`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

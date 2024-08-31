@@ -18,14 +18,15 @@ const AddItemForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',  // Change 'itemName' to 'name'
+      name: '',  
       price: '',
       description: '',
     },
     validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       try {
-        await axios.post('http://localhost:5000/items', values);
+        // Correctly use the environment variable
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/items`, values);
         alert('Item added successfully!');
         resetForm();
       } catch (error) {
@@ -33,8 +34,7 @@ const AddItemForm = () => {
         alert('Failed to add item');
       }
     },
-});
-
+  });
 
   return (
     <div className="container mt-4">
